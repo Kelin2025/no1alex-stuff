@@ -9,13 +9,13 @@ type Data = {
 
 const API_ROOT =
   process.env.NODE_ENV === "development"
-    ? "https://rubberninja-dashboard.herokuapp.com/"
-    : "https://rubberninja-dashboard.herokuapp.com/";
+    ? "https://no1alex-dashboard.herokuapp.com/"
+    : "https://no1alex-dashboard.herokuapp.com/";
 
 const WS_ROOT =
   process.env.NODE_ENV === "development"
-    ? "wss://rubberninja-dashboard.herokuapp.com/"
-    : "wss://rubberninja-dashboard.herokuapp.com/";
+    ? "wss://no1alex-dashboard.herokuapp.com/"
+    : "wss://no1alex-dashboard.herokuapp.com/";
 
 export const api = (uri, params) =>
   fetch(`${API_ROOT}${uri}`, {
