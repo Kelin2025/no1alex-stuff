@@ -7,5 +7,5 @@ import { SubtitleField } from "../atoms/SubtitleField";
 export const $starterData = createStoreObject({
   title: TitleField.$value,
   subtitle: SubtitleField.$value,
-  goal: GoalField.$value
+  goal: GoalField.$value.map(Number)
 });

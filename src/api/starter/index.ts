@@ -31,12 +31,19 @@ $starterStage
   .on(starterStopped, () => "stopped")
   .on(starterEnded, () => "stopped");
 
-$starterTitle.on(starterStarted, (state, { title }) => title);
+$starterTitle
+  .on(starterReceived, (state, { title }) => title)
+  .on(starterStarted, (state, { title }) => title);
 
-$starterSubtitle.on(starterStarted, (state, { subtitle }) => subtitle);
+$starterSubtitle
+  .on(starterReceived, (state, { subtitle }) => subtitle)
+  .on(starterStarted, (state, { subtitle }) => subtitle);
 
-$starterGoal.on(starterStarted, (state, { goal }) => goal);
+$starterGoal
+  .on(starterReceived, (state, { goal }) => goal)
+  .on(starterStarted, (state, { goal }) => goal);
 
 $starterProgress
   .on(starterStarted, () => 0)
+  .on(starterReceived, (state, { goal }) => progress)
   .on(starterProgressUpdated, (state, { current }) => current);
