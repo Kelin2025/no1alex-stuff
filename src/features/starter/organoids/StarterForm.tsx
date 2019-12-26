@@ -15,7 +15,8 @@ const Buttons = () => {
   const starterStage = useStore($starterStage);
 
   switch (starterStage) {
-    case "running": {
+    case "started":
+    case "stopped": {
       return (
         <>
           <PauseButton />

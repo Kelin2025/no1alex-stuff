@@ -27,7 +27,7 @@ import { messageReceived } from "../../core/tmi";
 import { socketOn, socketClientConnected } from "../../core/socket";
 
 $starterStage
-  .on(runStarter, () => "running")
+  .on(runStarter, () => "started")
   .on(pauseStarter, () => "paused")
   .on(stopStarter, () => "not_running");
 
@@ -102,7 +102,7 @@ guard({
     })
   ),
   filter: ({ stage, users, nickname }) =>
-    stage === "running" && !users.includes(nickname),
+    stage === "started" && !users.includes(nickname),
   target: incStarterProgress
 });
 

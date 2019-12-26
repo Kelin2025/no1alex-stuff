@@ -46,6 +46,8 @@ export function createInput<T>({
   const $value = createStore<T>(initialValue);
   const changed = createEvent<T>();
 
+  $value.on(changed, (state, next) => next);
+
   const Component = props => {
     const value = useStore($value);
     const View = view;

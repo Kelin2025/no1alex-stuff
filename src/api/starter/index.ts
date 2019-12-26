@@ -24,7 +24,12 @@ export const $percentProgress = combine(
   (progress, goal) => (progress / goal) * 100
 );
 
-$starterStage.on(starterReceived, (state, { stage }) => stage);
+$starterStage
+  .on(starterReceived, (state, { stage }) => stage)
+  .on(starterStarted, () => "started")
+  .on(starterPaused, () => "paused")
+  .on(starterStopped, () => "stopped")
+  .on(starterEnded, () => "stopped");
 
 $starterTitle.on(starterStarted, (state, { title }) => title);
 
