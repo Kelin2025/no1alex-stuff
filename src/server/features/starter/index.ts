@@ -29,7 +29,7 @@ import { socketOn, socketClientConnected } from "../../core/socket";
 $starterStage
   .on(runStarter, () => "started")
   .on(pauseStarter, () => "paused")
-  .on(stopStarter, () => "not_running");
+  .on(stopStarter, () => "idle");
 
 $starterTitle.on(runStarter.done, (state, { result }) => result.title);
 

@@ -32,7 +32,7 @@ const Buttons = () => {
         </>
       );
     }
-    case "not_running": {
+    case "idle": {
       return (
         <>
           <RunButton />
