@@ -27,9 +27,9 @@ import { messageReceived } from "../../core/tmi";
 import { socketOn, socketClientConnected } from "../../core/socket";
 
 $starterStage
-  .on(runStarter, () => "started")
-  .on(pauseStarter, () => "paused")
-  .on(stopStarter, () => "idle");
+  .on(runStarter.done, () => "started")
+  .on(pauseStarter.done, () => "paused")
+  .on(stopStarter.done, () => "idle");
 
 $starterTitle.on(runStarter.done, (state, { result }) => result.title);
 
@@ -111,3 +111,15 @@ guard({
   filter: progress => progress >= 100,
   target: sendStarterEnded.prepend(progress => ({ options: { progress } }))
 });
+
+incStarterProgress.watch(console.log);
+
+sample(
+  combine({ stage: $starterStage, users: $starterUsers }),
+  messageReceived,
+  ({ stage, users }, { nickname }) => ({
+    stage,
+    users,
+    nickname
+  })
+).watch(console.log);
