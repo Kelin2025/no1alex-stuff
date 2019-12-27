@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 (async () => {
-  app.get(["/", "/polls", "/polls/templates", "/tts"], async (req, res) => {
+  app.get(["/"], async (req, res) => {
     res.sendFile(path.join(__dirname, "/index.html"));
   });
 
