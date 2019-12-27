@@ -111,15 +111,3 @@ guard({
   filter: progress => progress >= 100,
   target: sendStarterEnded.prepend(progress => ({ options: { progress } }))
 });
-
-incStarterProgress.watch(console.log);
-
-sample(
-  combine({ stage: $starterStage, users: $starterUsers }),
-  messageReceived,
-  ({ stage, users }, { nickname }) => ({
-    stage,
-    users,
-    nickname
-  })
-).watch(console.log);
