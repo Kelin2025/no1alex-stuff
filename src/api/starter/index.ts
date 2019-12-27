@@ -45,5 +45,5 @@ $starterGoal
 
 $starterProgress
   .on(starterStarted, () => 0)
-  .on(starterReceived, (state, { goal }) => progress)
+  .on(starterReceived, (state, { progress }) => progress)
   .on(starterProgressUpdated, (state, { current }) => current);
