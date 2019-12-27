@@ -9,6 +9,7 @@ type MessagePayload = {
   nickname: string;
   isSub: boolean;
   isSelf: boolean;
+  emotes: { string: string[] };
 };
 
 type SubPayload = {
@@ -57,6 +58,7 @@ chat.on("message", (channel, userstate, text, isSelf) => {
     channel,
     userstate,
     text,
+    emotes: userstate["emotes"],
     nickname: userstate["display-name"],
     isSub: !!userstate.subscriber,
     isSelf: isSelf
@@ -79,11 +81,6 @@ chat.on("resub", (channel, username, months, message, userstate) => {
     months: ~~userstate["msg-param-cumulative-months"],
     streak: userstate["msg-param-should-share-streak"] ? months : 1
   });
-});
-
-chat.on("emotesets", (sets, obj) => {
-  // Here are the emotes I can use:
-  console.log(sets, obj);
 });
 
 messageSent.watch(message => {

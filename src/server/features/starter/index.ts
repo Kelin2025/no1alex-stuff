@@ -95,14 +95,33 @@ guard({
   source: sample(
     combine({ stage: $starterStage, users: $starterUsers }),
     messageReceived,
-    ({ stage, users }, { nickname }) => ({
+    ({ stage, users }, { nickname, emotes, text }) => ({
       stage,
       users,
-      nickname
+      nickname,
+      emotes,
+      text
     })
   ),
-  filter: ({ stage, users, nickname }) =>
-    stage === "started" && !users.includes(nickname),
+  // Run only if:
+  // - has current starter
+  // - user has not already counted
+  // - has one of no1alex emotes
+  filter: ({ stage, users, nickname, emotes, text }) => {
+    if (stage !== "started") {
+      return false;
+    }
+    if (users.includes(nickname)) {
+      return false;
+    }
+    const coords = [...Object.values(emotes)].map(matches => matches[0]);
+    if (
+      coords.some(coords => text.slice(...coords.split("-")).startsWith("no1"))
+    ) {
+      return false;
+    }
+    return true;
+  },
   target: incStarterProgress
 });
 
