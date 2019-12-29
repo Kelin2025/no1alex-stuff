@@ -10,6 +10,7 @@ import { TitleField } from "../atoms/TitleField";
 import { StopButton } from "../atoms/StopButton";
 import { PauseButton } from "../atoms/PauseButton";
 import { SubtitleField } from "../atoms/SubtitleField";
+import { EmotesField } from "../atoms/EmotesField";
 
 const Buttons = () => {
   const starterStage = useStore($starterStage);
@@ -50,6 +51,7 @@ export const StarterForm = () => {
           <TitleField />
           <SubtitleField />
           <GoalField />
+          <EmotesField placeholder={'e.g. "no1YES, no1NO"'} />
         </Box>
       </Box>
       <Box flow="row" cols={["1fr"]}>

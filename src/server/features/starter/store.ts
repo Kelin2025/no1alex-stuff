@@ -4,6 +4,8 @@ export const $starterStage = createStore("idle");
 export const $starterTitle = createStore("Let's start this stream");
 export const $starterSubtitle = createStore("Spam any of my emotes");
 export const $starterGoal = createStore(1000);
+export const $starterEmotes = createStore([]);
+
 export const $starterProgress = createStore(0);
 export const $starterUsers = createStore([]);
 
@@ -18,5 +20,6 @@ export const $starter = createStoreObject({
   title: $starterTitle,
   subtitle: $starterSubtitle,
   goal: $starterGoal,
+  emotes: $starterEmotes,
   progress: $starterProgress
 });

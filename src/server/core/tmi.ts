@@ -1,6 +1,6 @@
 import tmi from "tmi.js";
 import fetch from "node-fetch";
-import { createEvent } from "effector";
+import { createEvent, createStore, createEffect } from "effector";
 
 type MessagePayload = {
   channel: string;
@@ -19,9 +19,11 @@ type SubPayload = {
   streak: number;
 };
 
-export const messageSent = createEvent<string>();
-export const messageReceived = createEvent<MessagePayload>();
-export const subscriptionReceived = createEvent<SubPayload>();
+type Emoticon = {
+  code: string;
+  emoticon_set: number;
+  id: number;
+};
 
 const options = {
   options: {
@@ -38,6 +40,21 @@ const options = {
   channels: [`#${process.env.TMI_CHANNEL}`]
 };
 
+export const messageSent = createEvent<string>();
+export const messageReceived = createEvent<MessagePayload>();
+export const subscriptionReceived = createEvent<SubPayload>();
+export const getEmotesList = createEffect<void, Emoticon[]>({
+  handler: () => {
+    return fetch(
+      `https://api.twitchemotes.com/api/v4/channels/${process.env.TMI_CHANNEL_ID}`
+    )
+      .then(r => r.json())
+      .then(r => r.emotes);
+  }
+});
+
+export const $emotesList = createStore<Emoticon[]>([]);
+
 export const chat = new tmi.Client(options);
 
 export const doTwitchRequest = ({ token, path, ...payload }) =>
@@ -50,6 +67,8 @@ export const doTwitchRequest = ({ token, path, ...payload }) =>
     },
     ...payload
   }).then(r => r.json());
+
+$emotesList.on(getEmotesList.done, (state, { result }) => result);
 
 chat.connect();
 
@@ -86,3 +105,5 @@ chat.on("resub", (channel, username, months, message, userstate) => {
 messageSent.watch(message => {
   chat.say(process.env.TMI_CHANNEL, message);
 });
+
+getEmotesList();

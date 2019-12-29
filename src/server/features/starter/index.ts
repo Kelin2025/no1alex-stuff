@@ -8,7 +8,8 @@ import {
   $starterProgress,
   $starterUsers,
   $starter,
-  $percentProgress
+  $percentProgress,
+  $starterEmotes
 } from "./store";
 
 import {
@@ -23,7 +24,7 @@ import {
   sendStarterEnded,
   incStarterProgress
 } from "./actions";
-import { messageReceived } from "../../core/tmi";
+import { messageReceived, $emotesList } from "../../core/tmi";
 import { socketOn, socketClientConnected } from "../../core/socket";
 
 $starterStage
@@ -36,6 +37,8 @@ $starterTitle.on(runStarter.done, (state, { result }) => result.title);
 $starterSubtitle.on(runStarter.done, (state, { result }) => result.subtitle);
 
 $starterGoal.on(runStarter.done, (state, { result }) => result.goal);
+
+$starterEmotes.on(runStarter.done, (state, { result }) => result.emotes);
 
 $starterUsers
   .on(runStarter.done, () => [])
@@ -93,30 +96,40 @@ forward({
 
 guard({
   source: sample(
-    combine({ stage: $starterStage, users: $starterUsers }),
+    combine({
+      stage: $starterStage,
+      users: $starterUsers,
+      allowedEmotes: $starterEmotes
+    }),
     messageReceived,
-    ({ stage, users }, { nickname, emotes, text }) => ({
+    ({ stage, users, allowedEmotes }, { nickname, emotes, text }) => ({
       stage,
       users,
       nickname,
       emotes,
-      text
+      text,
+      allowedEmotes
     })
   ),
   // Run only if:
   // - has current starter
   // - user has not already counted
   // - has one of no1alex emotes
-  filter: ({ stage, users, nickname, emotes, text }) => {
+  filter: ({ stage, users, nickname, emotes, text, allowedEmotes }) => {
     if (stage !== "started") {
       return false;
     }
     if (users.includes(nickname)) {
       return false;
     }
+    if (!allowedEmotes.length) {
+      return true;
+    }
     const coords = [...Object.values(emotes)].map(matches => matches[0]);
     if (
-      coords.some(coords => text.slice(...coords.split("-")).startsWith("no1"))
+      coords.some(coords =>
+        allowedEmotes.includes(text.slice(...coords.split("-")))
+      )
     ) {
       return false;
     }

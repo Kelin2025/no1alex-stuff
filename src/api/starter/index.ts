@@ -15,6 +15,7 @@ export const stopStarter = createSocketSender("starter:stop");
 export const $starterStage = createStore("idle");
 export const $starterTitle = createStore("Let's start this stream");
 export const $starterSubtitle = createStore("Spam any of my emotes");
+export const $starterEmotes = createStore([]);
 export const $starterGoal = createStore(1000);
 export const $starterProgress = createStore(0);
 
@@ -38,6 +39,10 @@ $starterTitle
 $starterSubtitle
   .on(starterReceived, (state, { subtitle }) => subtitle)
   .on(starterStarted, (state, { subtitle }) => subtitle);
+
+$starterEmotes
+  .on(starterReceived, (state, { emotes }) => emotes)
+  .on(starterStarted, (state, { emotes }) => emotes);
 
 $starterGoal
   .on(starterReceived, (state, { goal }) => goal)
