@@ -9,7 +9,6 @@ import { StarterPreview } from "~features/starterPreview";
 
 const Wrapper = styled(animated.div)`
   align-items: center;
-  background: #1b1818;
   display: flex;
   height: 100%;
   justify-content: center;
