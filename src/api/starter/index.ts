@@ -46,8 +46,8 @@ $starterEmotes
 
 $starterGoal
   .on(starterReceived, (state, { goal }) => goal)
-  .on(starterStarted, (state, { goal }) => goal);
-  .on(starterProgressUpdated, (state, { current }) => current)
+  .on(starterStarted, (state, { goal }) => goal)
+  .on(starterProgressUpdated, (state, { current }) => current);
 
 $starterProgress
   .on(starterStarted, () => 0)

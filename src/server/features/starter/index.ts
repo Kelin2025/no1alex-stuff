@@ -60,7 +60,7 @@ forward({
 });
 
 forward({
-  from: $starterGoal.map(current => ({ options: { current } })),
+  from: $starterProgress.map(current => ({ options: { current } })),
   to: sendStarterProgress
 });
 
