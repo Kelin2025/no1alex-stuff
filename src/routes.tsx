@@ -9,6 +9,12 @@ const routes = {
     meta: {
       path: "/"
     }
+  },
+  auth: {
+    view: () => null,
+    meta: {
+      path: "/auth/:token"
+    }
   }
 };
 
