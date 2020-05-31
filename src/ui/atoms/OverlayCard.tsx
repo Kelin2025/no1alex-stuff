@@ -2,13 +2,13 @@ import * as React from "react";
 import styled from "styled-components";
 
 const TitleSlot = styled.div`
-  background: #7030c2;
+  color: #7d7d7d;
   padding: 10px;
+  border-bottom: 1px solid #353535;
 `;
 
 const ChildrenSlot = styled.div`
-  background: #100918;
-  color: #ff37a3;
+  color: #bcbcbc;
   padding: 10px;
 `;
 
@@ -29,7 +29,8 @@ const OverlayCardView = ({ title, children, className }) => {
 };
 
 export const OverlayCard = styled(OverlayCardView)`
-  background: #ff559c;
+  background: #262727;
   border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
   padding: 5px;
 `;

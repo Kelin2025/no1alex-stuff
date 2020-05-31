@@ -1,3 +1,5 @@
+@import "./fonts/stylesheet.css";
+
 * {
   box-sizing: border-box;
 }
@@ -17,7 +19,7 @@ body,
 body {
   background: #171717;
   color: #fff;
-  font: 16px Arial, sans-serif;
+  font: 16px "Circular Std", Arial, sans-serif;
 }
 
 a {

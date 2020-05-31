@@ -4,7 +4,13 @@ import { Box, SubnavRouteLink } from "~ui";
 export const Sidebar = () => {
   return (
     <Box flow="row" cols={["1fr"]}>
-      <SubnavRouteLink name="home">Edit</SubnavRouteLink>
+      <h2>Goals</h2>
+      <SubnavRouteLink name="home">Goal Starter</SubnavRouteLink>
+      <h2>Polls</h2>
+      <SubnavRouteLink name="polls">Polls</SubnavRouteLink>
+      <SubnavRouteLink name="pollsTemplates">Polls Templates</SubnavRouteLink>
+      <h2>TTS</h2>
+      <SubnavRouteLink name="tts">Chat and TTS</SubnavRouteLink>
     </Box>
   );
 };
