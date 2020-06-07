@@ -67,13 +67,3 @@ $livePoll
   .on(pollsCleared, () => null);
 
 getPolls();
-
-pollStarted({
-  _id: "p",
-  question: "Lol?",
-  answers: ["asdf", "asdfsd"],
-  expiresAt: +new Date() + 3600 * 1000,
-  votes: [1, 52],
-  ended: false,
-  duration: { type: "hours", value: 1 },
-});
