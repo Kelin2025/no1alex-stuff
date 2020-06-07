@@ -1,5 +1,6 @@
 import { createStore, combine } from "effector";
 import { createSocketSender, socketOn } from "~lib/api";
+import { $emotesList } from "~api/emotes";
 
 export const starterReceived = socketOn("starter:received");
 export const starterStarted = socketOn("starter:started");
@@ -23,6 +24,21 @@ export const $percentProgress = combine(
   $starterProgress,
   $starterGoal,
   (progress, goal) => (progress / goal) * 100
+);
+
+export const $starterEmotesUrls = combine(
+  $emotesList,
+  $starterEmotes,
+  (list, emotes) => {
+    return emotes.map((code) => {
+      const emote = list.find((emote) => emote.code === code);
+      console.log(code, emote);
+      if (emote) {
+        return `https://static-cdn.jtvnw.net/emoticons/v1/${emote.id}/2.0`;
+      }
+      return null;
+    });
+  }
 );
 
 $starterStage
@@ -52,3 +68,14 @@ $starterProgress
   .on(starterStarted, () => 0)
   .on(starterReceived, (state, { progress }) => progress)
   .on(starterProgressUpdated, (state, { current }) => current);
+
+setTimeout(() => {
+  starterReceived({
+    stage: "started",
+    title: "Lol",
+    subtitle: "Lfff",
+    emotes: ["no1LOL"],
+    goal: 1000,
+    progress: 10,
+  });
+}, 1000);

@@ -20,7 +20,7 @@
     "bezier-easing": "^2.1.0",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
-    "effector": "^20.6.1",
+    "effector": "^20.15.9",
     "effector-react": "^20.4.1",
     "express": "^4.17.1",
     "get-audio-duration": "^1.0.0",

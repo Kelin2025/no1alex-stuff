@@ -1,15 +1,33 @@
 import * as React from "react";
 import styled from "styled-components";
-import { useStore } from "effector-react";
+import { useList } from "effector-react";
 
-import { $starterSubtitle } from "~api/starter";
+import { $starterEmotesUrls } from "~api/starter";
 
 const StyledTitle = styled.div`
-  font-size: 24px;
+  color: #fff;
+  font-size: 28px;
+  text-align: center;
+  padding: 15px 15px 30px;
+  margin: 0 -25px 30px;
+  border-bottom: 1px solid #353535;
+
+  img {
+    vertical-align: middle;
+    margin: 0 10px;
+  }
 `;
 
-export const Subtitle = () => {
-  const starterSubtitle = useStore($starterSubtitle);
+const Emotes = () => {
+  return useList($starterEmotesUrls, (url) => {
+    return <img src={url} />;
+  });
+};
 
-  return <StyledTitle>{starterSubtitle}</StyledTitle>;
+export const Subtitle = () => {
+  return (
+    <StyledTitle>
+      Spam <Emotes />
+    </StyledTitle>
+  );
 };

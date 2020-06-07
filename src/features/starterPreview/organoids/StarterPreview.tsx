@@ -3,24 +3,28 @@ import styled from "styled-components";
 
 import titleEmoteSrc from "~ui/assets/images/titleEmote.png";
 
-import { Box } from "~ui";
+import { OverlayCard } from "~ui";
 import { Title } from "../atoms/Title";
 import { Subtitle } from "../atoms/Subtitle";
 import { Progress } from "../atoms/Progress";
 
-const StyledBox = styled(Box)`
-  text-align: center;
+const Wrapper = styled.div`
+  top: 50px;
+  padding: 25px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.5s ease-out;
+  width: 700px;
 `;
 
 export const StarterPreview = () => {
   return (
-    <StyledBox flow="row" justify="center">
-      <div>
-        <img src={titleEmoteSrc} />
-      </div>
-      <Title />
-      <Subtitle />
-      <Progress />
-    </StyledBox>
+    <Wrapper>
+      <OverlayCard title={<Title />}>
+        <Subtitle />
+        <Progress />
+      </OverlayCard>
+    </Wrapper>
   );
 };

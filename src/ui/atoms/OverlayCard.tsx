@@ -3,13 +3,14 @@ import styled from "styled-components";
 
 const TitleSlot = styled.div`
   color: #7d7d7d;
-  padding: 10px;
+  font-size: 18px;
+  padding: 15px 25px 12px;
   border-bottom: 1px solid #353535;
 `;
 
 const ChildrenSlot = styled.div`
   color: #bcbcbc;
-  padding: 10px;
+  padding: 15px 25px;
 `;
 
 const Inner = styled.div`
@@ -32,5 +33,4 @@ export const OverlayCard = styled(OverlayCardView)`
   background: #262727;
   border-radius: 10px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
-  padding: 5px;
 `;

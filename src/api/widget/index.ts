@@ -13,12 +13,12 @@ $isVisible.on(visibilityChanged, (state, value) => value);
 
 guard({
   source: $starterStage,
-  filter: stage => ["started", "paused"].includes(stage),
-  target: visibilityChanged.prepend(() => true)
+  filter: (stage) => ["started", "paused"].includes(stage),
+  target: visibilityChanged.prepend(() => true),
 });
 
 guard({
   source: $starterStage,
-  filter: stage => ["stopped", "idle"].includes(stage),
-  target: visibilityChanged.prepend(() => false)
+  filter: (stage) => ["stopped", "idle"].includes(stage),
+  target: visibilityChanged.prepend(() => false),
 });

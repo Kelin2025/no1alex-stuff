@@ -49,7 +49,6 @@ export const StarterForm = () => {
       <Box flow="row" cols={["1fr"]}>
         <Box flow="row" cols={["500px"]}>
           <TitleField />
-          <SubtitleField />
           <GoalField />
           <EmotesField placeholder={'e.g. "no1YES, no1NO"'} />
         </Box>

@@ -8,10 +8,9 @@ import progressEmoteSrc from "~ui/assets/images/progressEmote.png";
 
 const Root = styled.div`
   background: #606060;
-  height: 26px;
   position: relative;
-  width: 820px;
-  margin-top: 50px;
+  width: 500px;
+  margin: 100px auto;
 `;
 
 const LeftBorder = styled.div`
@@ -42,7 +41,7 @@ const StyledProgress = styled.div`
   background: #8c56ff;
   height: 26px;
   position: relative;
-  width: ${props => props.width}%;
+  width: ${(props) => props.width}%;
 
   > img {
     transform: translateY(-50%) translateX(50%);
@@ -65,11 +64,12 @@ const StyledProgress = styled.div`
 `;
 
 const StyledProgressWrapper = styled.div`
+  color: #fff;
   font-size: 24px;
   position: absolute;
   right: 0;
+  font-weight: 300;
   top: calc(-100% - 20px);
-  transform: translateX(50%);
 `;
 
 const ProgressBar = () => {
