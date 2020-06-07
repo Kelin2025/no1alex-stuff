@@ -68,14 +68,3 @@ $starterProgress
   .on(starterStarted, () => 0)
   .on(starterReceived, (state, { progress }) => progress)
   .on(starterProgressUpdated, (state, { current }) => current);
-
-setTimeout(() => {
-  starterReceived({
-    stage: "started",
-    title: "Lol",
-    subtitle: "Lfff",
-    emotes: ["no1LOL"],
-    goal: 1000,
-    progress: 10,
-  });
-}, 1000);
