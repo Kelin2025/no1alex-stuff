@@ -14,13 +14,22 @@ const Wrapper = styled(animated.div)`
   justify-content: center;
 `;
 
+const Preview = styled.div`
+  top: 50px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 export const Widget = () => {
   const isVisible = useStore($isVisible);
   const style = useSpring({ opacity: isVisible ? 1 : 0 });
 
   return (
     <Wrapper style={style}>
-      <StarterPreview />
+      <Preview>
+        <StarterPreview />
+      </Preview>
     </Wrapper>
   );
 };
